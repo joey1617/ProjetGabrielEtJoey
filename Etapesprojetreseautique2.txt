@@ -1,0 +1,52 @@
+Hardware
+Materiel necessaire:
+
+- Raspberry Pi
+- un breadboard
+- 4 switches tactiles pour faire les boutons
+- 5 male a femelle jumper leads
+- 4 male a male jumper leads
+
+Software
+logiciels necessaires:
+
+un raspbian fonctionnel: https://www.raspberrypi.org/downloads/raspbian/
+Python 3 (preinstalle sur Raspbian)
+gpiozero python module (preinstalle sur Raspbian)
+
+
+Preparer le projet:
+
+Dans le /home du PI, creer un dossier nomme gpio-music-box
+Creer un dossier nomme samples dans le dossier gpio-music-box
+aller chercher 4 fichiers .wav (des sons) sur wav-sounds.com (ou tout autre site qui fournit des sons .wav)
+
+IDLE3:
+- Ouvrir le menu et aller dans programming.
+- Cliquer sur Python 3 (IDLE)
+- Creer un fichier en cliquant sur file et ensuite new file dans le menu d'IDLE.
+(Cela va ouvrir une 2eme fenetre dans lequel on doit ecrire le code necessaire au projet)
+- Dans la deuxieme fenetre, ecrire import pygame (necessaire) et, en-dessous ecrire from gpiozero import button (pour que les boutons soient utilisables)
+- En-dessous de from gpiozero import button, ecrire pygame.init() 
+- En-dessous de pygame.init(), faire une variable qui est associee a chacun des sons. Ces variables seront utilises un peu plus tard.
+Ces variables doivent ressembler a :btn_(nom de la variable associe au son) = Button(numero du port GPIO dans lequel il est branche)
+(exemple: btn_drum = Button(17))  
+et le chemin pour se rendre jusqu'au fichier : my_sound = pygame.mixer.Sound('path/to/my/soundfile.wav')
+(dans notre cas, le chemin devrait ressembler a: /home/gpio-music-box/samples/son.wav)
+- Sur la ligne d'apres, ecrire while(1): (La prochaine etape doit etre indentee)
+- En-dessous des dernieres lignes, ecrire, pour chacun des sons: btn_(nom variable).when_pressed = (nom variable).play
+* Dans le but de ce projet, 4 sons devront etre utilises, donc il faut donc faire ces etapes 4 fois
+pour chacun des 4 sons.*
+- lorsque les 4 sons auront ete proprement prepares, il faut sauvegarder le fichier dans le dossier
+gpio-music-box (Pour sauvegarder, il faut cliquer sur "File" et ensuite cliquer sur "Save" . Il faudra specifier ou l'enregistrer)
+
+Brancher les boutons:
+
+Pour continuer, il faudra brancher une extremite des jumpers apres les 4 boutons.
+Sur la breadboard, brancher les 4 boutons via les jumpers sur 4 ports GPIO differents.
+
+Tester le tout:
+- Pour tester le tout, ecrire, dans le terminal, python2.7 (nom_du_fichier).py et appuyer sur le bouton.
+
+
+
